@@ -1,0 +1,171 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #f8f8f8;
+  background: #06070d;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0c0f19 0%, #050608 100%);
+  color: #f8f8f8;
+}
+
+body[data-wallpaper='night'] {
+  background-image: radial-gradient(circle at top, rgba(120, 46, 161, 0.16), transparent 24%), linear-gradient(180deg, #0c0f19 0%, #050608 100%);
+}
+
+body[data-wallpaper='red'] {
+  background-image: radial-gradient(circle at top, rgba(176, 0, 32, 0.2), transparent 24%), linear-gradient(180deg, #100307 0%, #0c040a 100%);
+}
+
+body[data-wallpaper='forest'] {
+  background-image: radial-gradient(circle at top, rgba(15, 75, 50, 0.2), transparent 24%), linear-gradient(180deg, #08120d 0%, #050707 100%);
+}
+
+.page-shell {
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: 18px;
+  min-height: 100vh;
+  padding: 18px;
+}
+
+.sidebar, .panel, .hero, .board-card, .profile-card, .quest-card, .schedule-day, .team-card, .alert, .modal__content, .status-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 22px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand__logo { width: 54px; height: 54px; border-radius: 18px; background: linear-gradient(135deg, #8b29aa, #3b2c66); display: grid; place-items: center; font-size: 1.7rem; }
+.brand h1, .brand p { margin: 0; }
+.brand p { color: #a8acc7; font-size: 0.95rem; }
+
+.nav { display: grid; gap: 10px; }
+.nav-link {
+  border: none;
+  background: rgba(255, 255, 255, 0.05);
+  color: #f7f7fb;
+  padding: 13px 16px;
+  border-radius: 14px;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+.nav-link.active, .nav-link:hover { background: linear-gradient(135deg, #8b29aa, #3b2c66); }
+.nav-link--link { text-decoration: none; }
+
+.status-card { padding: 18px; }
+.status-card h2 { margin: 0 0 8px; font-size: 1.05rem; }
+.status-card p { margin: 0; color: #c3c6db; }
+.status-actions { display: flex; gap: 8px; margin-top: 12px; }
+
+.content { display: flex; flex-direction: column; gap: 18px; }
+.page { display: none; }
+.page.active { display: block; }
+
+.hero, .panel { padding: 24px; }
+.hero h2 { margin-bottom: 10px; font-size: 2rem; }
+.hero p, .panel p { color: #c9cbe0; line-height: 1.75; }
+.hero-actions { margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+.quests-grid, .schedule-grid, .team-form-grid { display: grid; gap: 16px; }
+.quests-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.schedule-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 18px; }
+.team-form-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+.quest-card, .schedule-day, .team-card { padding: 18px; }
+.quest-card__image { width: 100%; height: 180px; object-fit: cover; border-radius: 16px; margin-bottom: 12px; background: #120b1f; }
+.quest-card__body h3, .schedule-day h3, .team-card h3 { margin-top: 0; margin-bottom: 8px; }
+
+.form-grid { display: grid; gap: 16px; }
+label { display: grid; gap: 8px; color: #e6e9f7; }
+input, select, textarea, button { font: inherit; }
+input, select, textarea {
+  width: 100%;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+}
+textarea { resize: vertical; }
+button { border: none; border-radius: 14px; padding: 12px 16px; cursor: pointer; }
+.button { background: linear-gradient(135deg, #8b29aa, #3b2c66); color: #fff; }
+.button--ghost { background: rgba(255,255,255,0.06); color: #f8f8f8; }
+.button:hover { opacity: 0.95; }
+
+.schedule-slots { display: grid; gap: 10px; }
+.slot-button { display: grid; gap: 4px; text-align: left; background: rgba(255,255,255,0.06); color: #fff; }
+.slot-button--disabled { opacity: 0.65; cursor: not-allowed; }
+
+.alert { padding: 16px; }
+.alert--info { background: rgba(64,100,142,0.16); }
+.alert--warning { background: rgba(147,56,71,0.2); }
+.alert--error { background: rgba(196,62,62,0.2); color: #ffd0d0; }
+
+.notification-list { display: grid; gap: 8px; margin-top: 12px; }
+.notification-item { padding: 10px 12px; border-radius: 12px; background: rgba(255,255,255,0.06); }
+
+.messenger__topbar { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 14px; flex-wrap: wrap; }
+.badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,0.08); }
+.wallpaper-selector { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.wallpaper-button { background: rgba(255,255,255,0.08); color: #fff; }
+
+.chat-shell { display: grid; gap: 14px; }
+.chat-shell--actor { margin-top: 18px; }
+.messages { min-height: 320px; max-height: 520px; overflow-y: auto; padding: 16px; border-radius: 18px; background-color: rgba(0,0,0,0.35); background-image: var(--chat-background); background-size: cover; background-position: center; }
+.message { margin-bottom: 12px; padding: 10px 12px; border-radius: 14px; background: rgba(255,255,255,0.06); }
+.message--mine { background: rgba(139,41,170,0.22); }
+.message__meta { display: flex; justify-content: space-between; gap: 10px; align-items: center; color: #aab0cd; font-size: 0.88rem; }
+.message__person { display: flex; align-items: center; gap: 8px; }
+.message__text { margin-top: 6px; color: #f7f8ff; line-height: 1.65; white-space: pre-wrap; }
+.message--system .message__text { color: #b8dbff; }
+.message-avatar { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
+.message-avatar--fallback { display: grid; place-items: center; background: #6f2d83; color: #fff; }
+.message-media { display: block; max-width: 100%; max-height: 240px; margin-top: 8px; border-radius: 12px; }
+
+.profile-card, .board-card { padding: 18px; margin-top: 16px; }
+.profile-preview { width: 100px; height: 100px; border-radius: 50%; overflow: hidden; background: rgba(255,255,255,0.08); margin-bottom: 12px; }
+.avatar-image { width: 100%; height: 100%; object-fit: cover; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.stats-card { padding: 14px; border-radius: 14px; background: rgba(255,255,255,0.06); }
+.stats-card h4, .stats-card p { margin:0; }
+.stats-card p { margin-top: 6px; color: #d7dbff; }
+.board-card ul { list-style: none; padding: 0; margin: 0; }
+.board-card li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.admin-action { margin-left: 6px; margin-top: 8px; }
+.admin-action--approve { background: #2f7d4c; }
+.admin-action--reject { background: #9b3d3d; }
+
+.modal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.75); padding: 16px; }
+.modal.open { display: flex; }
+.modal__content { width: min(520px, 100%); padding: 26px; }
+.auth-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+.tab-button { background: rgba(255,255,255,0.06); color: #fff; }
+.tab-button.active { background: #6f2d83; }
+
+@media (max-width: 960px) {
+  .page-shell { grid-template-columns: 1fr; }
+  .sidebar { order: 2; }
+  .chat-form { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .page-shell { padding: 10px; }
+  .sidebar, .hero, .panel, .profile-card, .board-card, .quest-card, .schedule-day, .team-card { padding: 16px; }
+  .hero h2 { font-size: 1.6rem; }
+}

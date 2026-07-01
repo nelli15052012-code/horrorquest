@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#1b1030"/>
+  <rect x="60" y="70" width="680" height="360" rx="32" fill="#2f1847" stroke="#8b5cf6" stroke-width="8"/>
+  <circle cx="240" cy="245" r="90" fill="#8b5cf6" opacity="0.7"/>
+  <path d="M370 310c45-70 110-102 190-110" stroke="#f5d9ff" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <text x="400" y="430" font-size="46" text-anchor="middle" fill="#f5d9ff" font-family="Arial, sans-serif">Квест</text>
+</svg>

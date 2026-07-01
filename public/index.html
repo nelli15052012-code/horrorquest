@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Страшные переписки</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-wallpaper="night">
+  <div class="page-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand__logo">👻</div>
+        <div>
+          <h1>Страшные переписки</h1>
+          <p>Сайт хоррор-квестов</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-link active" data-page="home">Главная</button>
+        <button class="nav-link" data-page="quests">Наши квесты</button>
+        <button class="nav-link" data-page="schedule">Расписание</button>
+        <button class="nav-link" data-page="messenger" id="messengerLink" hidden>Чат</button>
+        <button class="nav-link" data-page="actor" id="actorLink" hidden>Мессенджер актёров</button>
+        <button class="nav-link" data-page="admin" id="adminLink" hidden>Админка</button>
+        <button class="nav-link" data-page="team">Стать актером</button>
+        <a class="nav-link nav-link--link" href="https://t.me/fismonsters" target="_blank" rel="noreferrer">Наш телеграм</a>
+      </nav>
+
+      <div class="status-card" id="statusCard">
+        <h2>Статус</h2>
+        <p id="statusText">Не авторизованы</p>
+        <div class="notification-list" id="notificationList"></div>
+        <div class="status-actions">
+          <button id="loginButton" class="button button--ghost">Войти</button>
+          <button id="logoutButton" class="button button--ghost" hidden>Выйти</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="page active" id="home">
+        <div class="hero">
+          <h2>Живая переписка с сюжетом</h2>
+          <p>Полноценный портал для квестов, заявок, расписания, мессенджеров и живой команды.</p>
+          <div class="hero-actions">
+            <button class="button" data-page="quests">Наши квесты</button>
+            <button class="button button--ghost" data-page="schedule">Открыть расписание</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="quests">
+        <h2>Наши квесты</h2>
+        <div id="questAdminPanel" class="panel" hidden></div>
+        <div id="questsGrid" class="quests-grid"></div>
+      </section>
+
+      <section class="page" id="schedule">
+        <h2>Расписание</h2>
+        <div class="panel">
+          <p id="selectedSlotNote">Выберите удобное время ниже. После одобрения заявки время будет отмечено как занятое.</p>
+          <form id="bookingForm" class="form-grid">
+            <label>
+              Сценарий
+              <select id="scenarioSelect"></select>
+            </label>
+            <label>
+              Комментарий
+              <textarea id="bookingComment" rows="3" placeholder="Нужен ли вам особый формат или контакт?"></textarea>
+            </label>
+            <button type="submit" class="button">Отправить заявку</button>
+          </form>
+        </div>
+        <div id="scheduleGrid" class="schedule-grid"></div>
+      </section>
+
+      <section class="page" id="messenger">
+        <h2>Мессенджер для гостей</h2>
+        <div class="panel">
+          <div id="messengerAccess" class="alert alert--info">Для входа в общий чат нужно авторизоваться и получить доступ.</div>
+          <div id="messengerApp" class="messenger" hidden>
+            <div class="messenger__topbar">
+              <div>
+                <div class="badge" id="messengerRoleBadge">ГГ</div>
+                <div class="messenger__desc">Общий мессенджер для игроков и участников квеста.</div>
+              </div>
+              <div class="wallpaper-selector">
+                <label>Обои:</label>
+                <button type="button" class="wallpaper-button" data-room="quest" data-wallpaper="night">Ночь</button>
+                <button type="button" class="wallpaper-button" data-room="quest" data-wallpaper="red">Алое</button>
+                <button type="button" class="wallpaper-button" data-room="quest" data-wallpaper="forest">Лес</button>
+              </div>
+            </div>
+            <div class="chat-shell">
+              <div id="messages" class="messages"></div>
+              <form id="chatForm" class="chat-form">
+                <input id="messageInput" type="text" placeholder="Текст, фото, видео или аудио..." autocomplete="off" maxlength="500" />
+                <input id="mediaInput" type="file" accept="image/*,video/*,audio/*" />
+                <button type="submit" class="button">Отправить</button>
+              </form>
+            </div>
+          </div>
+          <div id="messengerLocked" class="alert alert--warning" hidden>Доступ откроется после записи или приглашения.</div>
+        </div>
+      </section>
+
+      <section class="page" id="actor">
+        <h2>Мессенджер актёров</h2>
+        <div class="panel">
+          <div class="alert alert--warning" id="actorLocked">Этот раздел доступен только актёрам и администраторам.</div>
+          <div id="actorContent" hidden>
+            <div class="profile-card">
+              <div id="profilePreview" class="profile-preview"></div>
+              <form id="profileForm" class="form-grid">
+                <label>Отображаемое имя<input id="profileName" type="text" /></label>
+                <label>О себе<textarea id="profileBio" rows="3"></textarea></label>
+                <label>Аватарка<input id="profileAvatarInput" type="file" accept="image/*" /></label>
+                <label>Фон чата<input id="profileBackgroundInput" type="file" accept="image/*" /></label>
+                <div id="profileBackgroundPreview" class="background-preview"></div>
+                <button type="submit" class="button">Сохранить профиль</button>
+              </form>
+            </div>
+            <div class="board-card">
+              <h3>Активные записи</h3>
+              <ul id="actorBoard"></ul>
+            </div>
+            <div class="chat-shell chat-shell--actor">
+              <div id="actorMessages" class="messages"></div>
+              <form id="actorChatForm" class="chat-form">
+                <input id="actorMessageInput" type="text" placeholder="Сообщение в закрытый чат актёров..." autocomplete="off" maxlength="500" />
+                <input id="actorMediaInput" type="file" accept="image/*,video/*,audio/*" />
+                <button type="submit" class="button">Отправить</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="admin">
+        <h2>Админка</h2>
+        <div class="panel">
+          <div class="alert alert--warning" id="adminLocked">Этот раздел доступен только создателю сайта и администраторам.</div>
+          <div id="adminContent" hidden>
+            <div class="profile-card">
+              <div id="adminProfilePreview" class="profile-preview"></div>
+              <form id="adminProfileForm" class="form-grid">
+                <label>Отображаемое имя<input id="adminProfileName" type="text" /></label>
+                <label>О себе<textarea id="adminProfileBio" rows="3"></textarea></label>
+                <label>Аватарка<input id="adminAvatarInput" type="file" accept="image/*" /></label>
+                <label>Фон чата<input id="adminBackgroundInput" type="file" accept="image/*" /></label>
+                <div id="adminBackgroundPreview" class="background-preview"></div>
+                <button type="submit" class="button">Сохранить профиль</button>
+              </form>
+            </div>
+            <div class="stats-grid" id="statsGrid"></div>
+            <div class="panel" id="scheduleAdminPanel"></div>
+            <div class="board-card">
+              <h3>Зарегистрированные пользователи</h3>
+              <ul id="usersList"></ul>
+            </div>
+            <div class="board-card">
+              <h3>Заявки на квест</h3>
+              <ul id="bookingsList"></ul>
+            </div>
+            <div class="board-card">
+              <h3>Заявки в команду</h3>
+              <ul id="teamApplicationsList"></ul>
+            </div>
+            <div class="chat-shell chat-shell--actor">
+              <div id="adminMessages" class="messages"></div>
+              <form id="adminChatForm" class="chat-form">
+                <input id="adminMessageInput" type="text" placeholder="Сообщение в чат администраторов..." autocomplete="off" maxlength="500" />
+                <input id="adminMediaInput" type="file" accept="image/*,video/*,audio/*" />
+                <button type="submit" class="button">Отправить</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="team">
+        <h2>Стать участником нашей команды</h2>
+        <div class="panel">
+          <p>Заполните одну из трёх анкет и отправьте заявку. После рассмотрения она появится в админ-чате.</p>
+          <div id="teamFormContainer" class="team-form-grid"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="authModal">
+    <div class="modal__content">
+      <h3>Вход или регистрация</h3>
+      <div class="auth-tabs">
+        <button class="tab-button active" data-tab="login">Войти</button>
+        <button class="tab-button" data-tab="register">Регистрация</button>
+      </div>
+      <form id="authForm" class="form-grid">
+        <label>Никнейм<input type="text" id="authUsername" required maxlength="30" /></label>
+        <label>Пароль<input type="password" id="authPassword" required minlength="4" /></label>
+        <label>Код доступа (необязательно)<input type="text" id="authInviteCode" maxlength="40" placeholder="creator-master для создателя" /></label>
+        <p class="auth-helper">Код доступа создателя: <strong>.</strong></p>
+        <button type="submit" class="button">Отправить</button>
+      </form>
+      <div id="authError" class="alert alert--error" hidden></div>
+      <button class="button button--ghost" id="authClose">Закрыть</button>
+    </div>
+  </div>
+
+  <script src="client.js"></script>
+</body>
+</html>
