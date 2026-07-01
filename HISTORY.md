@@ -1,29 +1,29 @@
-1.0.5 / 2023-01-29
-==================
-
-  * perf: skip value escaping when unnecessary
-
-1.0.4 / 2017-09-11
-==================
-
-  * perf: skip parameter parsing when no parameters
-
-1.0.3 / 2017-09-10
-==================
-
-  * perf: remove argument reassignment
-
-1.0.2 / 2016-05-09
+1.1.2 / 2016-01-17
 ==================
 
   * perf: enable strict mode
 
-1.0.1 / 2015-02-13
+1.1.1 / 2014-12-30
 ==================
 
-  * Improve missing `Content-Type` header error message
+  * Improve `browserify` support
 
-1.0.0 / 2015-02-01
+1.1.0 / 2014-07-05
 ==================
 
-  * Initial implementation, derived from `media-typer@0.3.0`
+  * Add `CONNECT` method
+ 
+1.0.1 / 2014-06-02
+==================
+
+  * Fix module to work with harmony transform
+
+1.0.0 / 2014-05-08
+==================
+
+  * Add `PURGE` method
+
+0.1.0 / 2013-10-28
+==================
+
+  * Add `http.METHODS` support
